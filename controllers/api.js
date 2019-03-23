@@ -31,9 +31,6 @@ exports.getTags = (req, res) => {
   });
 };
 
-
-
-
 /**
  * GET /api/foursquare
  * Foursquare API example.
