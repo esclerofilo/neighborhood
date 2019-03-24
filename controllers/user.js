@@ -166,6 +166,7 @@ exports.postUpdateProfile = (req, res, next) => {
     user.profile.tags = req.body.tags.split(',') || '';
     user.location.longitude = req.body.longitude || '';
     user.location.latitude = req.body.latitude || '';
+    user.location.radio = req.body.radio || '';
     user.save((err) => {
       if (err) {
         if (err.code === 11000) {
