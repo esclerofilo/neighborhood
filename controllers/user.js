@@ -386,7 +386,7 @@ exports.getChat = (req, res) => {
       title: req.params["chatName"],
       chat: chatObject
    });
-  }).catch(() => {});
+  }).catch(() => {res.send("No such chat")});
 };
 
 /**
