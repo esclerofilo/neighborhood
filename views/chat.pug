@@ -2,11 +2,11 @@ extends layout
 
 block content
   .pb-2.mt-2.mb-4.border-bottom
-    h3 Chat de #{chat.name}
-
-    ul
-        each par in chat.messages
-            li #{par.author}: #{par.message}
+    .card.text-left
+        .card-header Bienvenido al Chat de #{chat.name}
+        .card-body
+            each par in chat.messages
+                p #{par.author}: #{par.message}
     
     form(method="post")
         input(type='hidden', name='_csrf', value=_csrf)
