@@ -148,6 +148,7 @@ app.get('/chat/:chatName', userController.getChat);
 app.post('/chat/:chatName', userController.postChat);
 
 app.get('/tags', userController.getTags);
+app.get('/explore', userController.getExplore);
 app.post('/tags/delete', userController.postDeleteTag);
 app.post('/tags/add', userController.postAddTag);
 

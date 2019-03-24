@@ -215,6 +215,17 @@ exports.getTags = (req, res) => {
   });
 };
 
+exports.getExplore = (req, res) => {
+    chatArray = [];
+    Chat.find({}, function (_err, chats) {
+        chats.forEach(function (chat) {
+            chatArray.push(chat);
+            console.log(chatArray);
+        });
+        res.render('explore', { title: 'Explore', allTags: chatArray });
+    });
+};
+
 /**
  * POST /tags/delete
  * Delete a tag given by the req param "delete"
