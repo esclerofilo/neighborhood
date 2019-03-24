@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  .pb-2.mt-2.mb-4.border-bottom
+    h3 Chat de #{chat.name}
+
+    ul
+        each par in chat.messages
+            li #{par.author} #{par.message}
