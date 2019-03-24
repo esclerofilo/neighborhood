@@ -5,7 +5,9 @@ const chatSchema = new mongoose.Schema({
     messages: [{
         message: String,
         author: String
-    }]
+    }],
+    latitude: Number,
+    longitude: Number
 }, { timestamps: true });
 
 const Chat = mongoose.model('Chat', chatSchema);

@@ -127,11 +127,13 @@ exports.getAccount = (req, res) => {
   });
 };
 
-function createChat(name) {
+function createChat(name, latitude, longitude) {
   Chat.findOne({name: name}).then((chat) => {
     if (!chat) {
       const chat = new Chat ({
-        name: name
+        name: name,
+        latitude: latitude,
+        longitude: longitude
       });
       chat.save();
     } 
@@ -160,7 +162,6 @@ exports.postUpdateProfile = (req, res, next) => {
     user.profile.gender = req.body.gender || '';
     user.profile.location = req.body.location || '';
     user.profile.website = req.body.website || '';
-    user.profile.tags = req.body.tags.split(',') || '';
     user.location.longitude = req.body.longitude || '';
     user.location.latitude = req.body.latitude || '';
     user.location.radio = req.body.radio || '';
@@ -175,9 +176,6 @@ exports.postUpdateProfile = (req, res, next) => {
       req.flash('success', { msg: 'Profile information has been updated.' });
       res.redirect('/account');
     });
-    user.profile.tags.forEach(tag =>
-      createChat(tag)
-    );
   });
 };
 
@@ -249,8 +247,14 @@ exports.postAddTag = (req, res) => {
     if (!tagName) {
       res.redirect('/tags');
     }
+    var latitude = user.location.latitude;
+    var longitude = user.location.longitude;
+    if (!latitude || !longitude) {
+      res.send("You need to set your latitude and longitude before you can add tags");
+    }
     user.profile.tags.push(tagName);
     user.save();
+    createChat(tagName, latitude, longitude);
     res.redirect('/tags');
   });
 };
