@@ -147,11 +147,13 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 app.get('/chat/:chatName', userController.getChat);
 app.post('/chat/:chatName', userController.postChat);
 
+app.get('/tags', userController.getTags);
+app.post('/tags/delete', userController.postDeleteTag);
+app.post('/tags/add', userController.postAddTag);
 
 /**
  * API examples routes.
  */
-app.get('/tags', apiController.getTags);
 app.get('/api', apiController.getApi);
 app.get('/api/lastfm', apiController.getLastfm);
 app.get('/api/nyt', apiController.getNewYorkTimes);

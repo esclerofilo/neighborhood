@@ -208,6 +208,54 @@ exports.postUpdatePassword = (req, res, next) => {
 };
 
 /**
+ * GET /tags
+ * List of tags with delete and add buttons.
+ */
+exports.getTags = (req, res) => {
+  res.render('tags', {
+    title: 'Tags'
+  });
+};
+
+/**
+ * POST /tags/delete
+ * Delete a tag given by the req param "delete"
+ */
+exports.postDeleteTag = (req, res) => {
+  User.findById(req.user.id, (err, user) => {
+    if (err) { return next(err); }
+    var indexStr = req.body.delete;
+    if (!indexStr) {
+      res.redirect('/tags');
+    }
+    var index = parseInt(indexStr);
+    if (!isFinite(index)) {
+      res.redirect('/tags');
+    }
+    user.profile.tags.splice(index, 1);
+    user.save();
+    res.redirect('/tags');
+  });
+};
+
+/**
+ * POST /tags/add
+ * Delete a tag given by the req param "newtag"
+ */
+exports.postAddTag = (req, res) => {
+  User.findById(req.user.id, (err, user) => {
+    if (err) { return next(err); }
+    var tagName = req.body.newtag;
+    if (!tagName) {
+      res.redirect('/tags');
+    }
+    user.profile.tags.push(tagName);
+    user.save();
+    res.redirect('/tags');
+  });
+};
+
+/**
  * POST /account/delete
  * Delete user account.
  */
