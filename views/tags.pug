@@ -5,7 +5,10 @@ block content
   p.lead The amazing gate to entertainment 
   h2
     each val in user.profile.tags
-      a.btn.btn-dark.btn-block(href="/chat/" +val,role='button') #{val}
+      a.btn.btn-dark(href="/chat/" +val,type='button') #{val}
+      a.btn.btn-danger(type='button') Delete
 
-
+      br
+    br
+    a.btn.btn-info(type='button') Create a Tag
       
