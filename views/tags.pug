@@ -4,11 +4,17 @@ block content
   h1 TAGS
   p.lead The amazing gate to entertainment 
   h2
-    each val in user.profile.tags
+    each val, index in user.profile.tags
       a.btn.btn-dark(href="/chat/" +val,type='button') #{val}
-      a.btn.btn-danger(type='button') Delete
+      form(action="/tags/delete", method="post")
+        input(type='hidden', name='_csrf', value=_csrf)
+        input.form-control(type='hidden', value=index, name='delete')
+        input.btn.btn-danger(type='submit', value='Delete')
 
       br
     br
-    a.btn.btn-info(type='button') Create a Tag
+    form(action="/tags/add", method="post")
+      input(type='hidden', name='_csrf', value=_csrf)
+      input(type="text", name="newtag")
+      input.btn.btn-info(type='submit', value='Add New Tag')
       
