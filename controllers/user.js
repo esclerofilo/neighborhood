@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 const passport = require('passport');
 const _ = require('lodash');
 const User = require('../models/User');
+const Chat = require('../models/Chat');
 
 const randomBytesAsync = promisify(crypto.randomBytes);
 
@@ -126,6 +127,20 @@ exports.getAccount = (req, res) => {
   });
 };
 
+function createChat(name) {
+  Chat.findOne({name: name}).then((chat) => {
+    if (!chat) {
+      console.log("creating chat", name);
+      const chat = new Chat ({
+        name: name
+      });
+      chat.save();
+    } else {
+      console.log("chat", name, "already existed");
+    }
+  });
+}
+
 /**
  * POST /account/profile
  * Update profile information.
@@ -162,6 +177,9 @@ exports.postUpdateProfile = (req, res, next) => {
       req.flash('success', { msg: 'Profile information has been updated.' });
       res.redirect('/account');
     });
+    user.profile.tags.forEach(tag =>
+      createChat(tag)
+    );
   });
 };
 
@@ -355,6 +373,20 @@ exports.getForgot = (req, res) => {
   res.render('account/forgot', {
     title: 'Forgot Password'
   });
+};
+
+/**
+ * GET /chat/:chatName
+ * Main chat app.
+ */
+exports.getChat = (req, res) => {
+  Chat.findOne({name: req.params["chatName"]}).then((chatObject)=>{
+    console.log(chatObject.name);
+    res.render('chat', {
+      title: req.params["chatName"],
+      chat: chatObject
+   });
+  }).catch(() => {res.send("No such chat")});
 };
 
 /**
