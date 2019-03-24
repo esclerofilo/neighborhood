@@ -130,14 +130,11 @@ exports.getAccount = (req, res) => {
 function createChat(name) {
   Chat.findOne({name: name}).then((chat) => {
     if (!chat) {
-      console.log("creating chat", name);
       const chat = new Chat ({
         name: name
       });
       chat.save();
-    } else {
-      console.log("chat", name, "already existed");
-    }
+    } 
   });
 }
 
@@ -382,12 +379,36 @@ exports.getForgot = (req, res) => {
  */
 exports.getChat = (req, res) => {
   Chat.findOne({name: req.params["chatName"]}).then((chatObject)=>{
-    console.log(chatObject.name);
     res.render('chat', {
       title: req.params["chatName"],
       chat: chatObject
    });
   }).catch(() => {res.send("No such chat")});
+};
+
+/**
+ * POST /chat/:chatName
+ * Main chat app.
+ */
+exports.postChat = (req, res) => {
+  if (!req.body || !req.user) {
+    console.log("non valid");
+    res.redirect("/chat/"+chatName);
+  }
+  var chatName = req.params["chatName"];
+  Chat.findOne({name: chatName}).then((chatObject) => {
+    User.findById(req.user.id, (err, user) => {
+      const newMessage = {
+        message: req.body.message,
+        author: user.profile.name || user.email
+      };
+      console.log("content:", newMessage);
+      chatObject.messages.push(newMessage);
+      chatObject.save();
+      // TODO maybe save?
+    });
+  }).catch(() => {res.send("No such chat")});
+  res.redirect("/chat/"+chatName);
 };
 
 /**

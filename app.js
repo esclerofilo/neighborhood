@@ -145,6 +145,7 @@ app.post('/account/delete', passportConfig.isAuthenticated, userController.postD
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
 app.get('/chat/:chatName', userController.getChat);
+app.post('/chat/:chatName', userController.postChat);
 
 
 /**
