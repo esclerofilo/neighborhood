@@ -10,12 +10,13 @@ block content
     
     form(method="post")
         input(type='hidden', name='_csrf', value=_csrf)
+        br
         .form-group.row
-            label.col-md-3.col-form-label.font-weight-bold.text-right(for='message') Message
+            label.col-md-3.col-form-label.font-weight-bold.text-right(for='message') Message:
             .col-md-7
-                input.form-control(type='text', name='message', id='message')
+                input.form-control(type='text', name='message', id='message', autofocus)
         .form-group
             .offset-sm-3.col-md-7.pl-2
                 button.btn.btn.btn-primary(type='submit')
-                i.fas.fa-pencil-alt.fa-sm
-                | Send
+                  i.fas.fa-pencil-alt.fa-sm
+                  | Send

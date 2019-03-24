@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 EXPLORE
+  p.lead The amazing gate to entertainment 
+  h2
+    each val in allTags
+      a.btn.btn-dark(href="/chat/" +val.name,type='button',style='width: 300px; height: 40px;') #{val.name}
+      form(action="/tags/add", method="post")
+        input(type='hidden', name='_csrf', value=_csrf)
+        input.form-control(type='hidden', value=index, name='add')
+        input.btn.btn-success(type='submit', value='Add')
+      br
+  
+      
