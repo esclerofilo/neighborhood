@@ -1,8 +1,8 @@
 extends layout
 
 block content
-  h1 TAGS
-  p.lead The amazing gate to entertainment 
+  h1 MY TAGS
+  p.lead List of your favourite activities and hobbies near you
   h2
     each val, index in user.profile.tags
       a.btn.btn-dark(href="/chat/" +val,type='button',style='width: 300px; height: 40px;') #{val} 

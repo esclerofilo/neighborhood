@@ -10,16 +10,10 @@
       ul.nav.navbar-nav
         li.nav-item(class=(title === 'Home') ? 'active' : undefined)
           a.nav-link(href='/') Home
-        li.nav-item(class=(title === 'API Examples') ? 'active' : undefined)
-          a.nav-link(href='/api') API Examples
-        li.nav-item(class=(title === 'TAGS') ? 'active' : undefined)
+        li.nav-item(class=(title === 'MY TAGS') ? 'active' : undefined)
           a.nav-link(href='/tags') TAGS
         li.nav-item(class=(title === 'EXPLORE') ? 'active' : undefined)
           a.nav-link(href='/explore') EXPLORE
-        li.nav-item(class=(title === 'Contact') ? 'active' : undefined)
-          a.nav-link(href='/contact') Contact
-        li.nav-item(class=(title === 'Status') ? 'active' : undefined)
-          a.nav-link(href='/status') Status
       ul.nav.navbar-nav.ml-auto
         if !user
           li.nav-item(class=(title === 'Login') ? 'active' : undefined)

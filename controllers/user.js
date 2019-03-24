@@ -249,7 +249,7 @@ exports.postDeleteTag = (req, res) => {
 
 /**
  * POST /tags/add
- * Delete a tag given by the req param "newtag"
+ * Add a tag given by the req param "newtag"
  */
 exports.postAddTag = (req, res) => {
   User.findById(req.user.id, (err, user) => {

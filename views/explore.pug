@@ -8,8 +8,6 @@ block content
       a.btn.btn-dark(href="/chat/" +val.name,type='button',style='width: 300px; height: 40px;') #{val.name}
       form(action="/tags/add", method="post")
         input(type='hidden', name='_csrf', value=_csrf)
-        input.form-control(type='hidden', value=index, name='add')
+        input.form-control(type='hidden', value=val.name, name='newtag')
         input.btn.btn-success(type='submit', value='Add')
       br
-  
-      
