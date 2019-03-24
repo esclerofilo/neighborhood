@@ -38,6 +38,14 @@ block content
       label.col-md-3.col-form-label.font-weight-bold.text-right(for='longitude') Longitude
       .col-md-7
         input.form-control(type='text', name='longitude', id='longitude', value=user.location.longitude, autocomplete)
+    .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='radio') Radio [km]
+      .col-md-7
+        input.form-control(type='text', name='radio', id='radio', value=user.location.radio, autocomplete='radio')
+    .form-group.row
+
+    // 1km aprox 0.01 grado (de latitud o longitud)
+      
     //.form-group.row
       label.col-md-3.col-form-label.font-weight-bold.text-right Gravatar
       .col-sm-4

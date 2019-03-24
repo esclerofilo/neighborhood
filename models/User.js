@@ -19,7 +19,8 @@ const userSchema = new mongoose.Schema({
   tokens: Array,
   location: {
     latitude: String,
-    longitude: String
+    longitude: String,
+    radio: String
   },
   profile: {
     name: String,
