@@ -27,10 +27,6 @@ block content
       .col-md-7
         input.form-control(type='text', name='name', id='name', value=user.profile.name, autocomplete='name')
     .form-group.row
-      label.col-md-3.col-form-label.font-weight-bold.text-right(for='name') Tags
-      .col-md-7
-        input.form-control(type='text', name='tags', id='tags', value=user.profile.tags.join(), autocomplete='tags')
-    .form-group.row
       label.col-md-3.col-form-label.font-weight-bold.text-right(for='latitude') Latitude
       .col-md-7
         input.form-control(type='text', name='latitude', id='latitude', value=user.location.latitude, autocomplete)
@@ -43,6 +39,12 @@ block content
       .col-md-7
         input.form-control(type='text', name='radio', id='radio', value=user.location.radio, autocomplete='radio')
     .form-group.row
+      
+      
+      //label.col-md-3.col-form-label.font-weight-bold.text-right(for='name') Tags 
+      //.col-md-7
+        //input.form-control(type='text', name='tags', id='tags', value=user.profile.tags.join(), autocomplete='tags')
+    //.form-group.row
 
     // 1km aprox 0.01 grado (de latitud o longitud)
       

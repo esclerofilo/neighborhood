@@ -18,9 +18,9 @@ const userSchema = new mongoose.Schema({
   steam: String,
   tokens: Array,
   location: {
-    latitude: String,
-    longitude: String,
-    radio: String
+    latitude: Number,
+    longitude: Number,
+    radio: Number
   },
   profile: {
     name: String,
